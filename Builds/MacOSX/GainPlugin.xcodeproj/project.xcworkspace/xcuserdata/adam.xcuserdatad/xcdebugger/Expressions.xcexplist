@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GainPanel::GainPanel(GainPluginAudioProcessor*):GainPanel.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_sliderX">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "juce::NormalisableRange&lt;double&gt;::setSkewForCentre(double):juce_NormalisableRange.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "end">
+            </PersistentString>
+            <PersistentString
+               value = "start">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

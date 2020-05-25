@@ -1,0 +1,36 @@
+/*
+  ==============================================================================
+
+    nirGain.h
+    Created: 21 Apr 2020 9:29:00pm
+    Author:  Adam T. Croft
+
+  ==============================================================================
+*/
+
+#pragma once
+
+#include "JuceHeader.h"
+#include "HelperFunctions.h"
+#include <array>
+
+class nirGain
+{
+public:
+    nirGain() = default;
+    ~nirGain() = default;
+    
+    void process(float* inputAudio,
+                 float inputGain,
+                 float* outputAudio,
+                 int numberOfSamplesToRender);
+    
+    void reset(double sampleRate);
+    
+    float getValue();
+    
+private:
+    SmoothedValue<float, ValueSmoothingTypes::Linear> _smoother;
+    float _currentOutputValue, _avgVuSample, _vuDisplaySample = 0;
+    std::vector<float> _vuOutputBuffer;
+};
