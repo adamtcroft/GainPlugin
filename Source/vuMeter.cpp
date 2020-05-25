@@ -55,7 +55,7 @@ void vuMeter::timerCallback()
 void vuMeter::setParameterID(int inputParameterID)
 {
     _parameterID = inputParameterID;
-    startTimerHz(15);
+    startTimerHz(30);
 }
 
 void vuMeter::setFillHeight(double height)
