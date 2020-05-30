@@ -165,6 +165,11 @@ void GainPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
         auto gainValue = _parameters.getParameterAsValue(parameterIDs[Parameter_Gain]).getValue();
         
         _gain->process(channelData, gainValue, channelData, buffer.getNumSamples());
+        
+        if(channel == 0)
+            _rmsLeft = buffer.getRMSLevel(0, 0, buffer.getNumSamples());
+        else
+            _rmsRight = buffer.getRMSLevel(1, 0, buffer.getNumSamples());
     }
 }
 
@@ -228,5 +233,6 @@ AudioProcessorValueTreeState::ParameterLayout GainPluginAudioProcessor::initiali
 
 float GainPluginAudioProcessor::getChannelLevel(int channel)
 {
-    return dBToNormalizedGain(_gain->getValue());
+    _rmsValue = (_rmsLeft + _rmsRight)/2;
+    return _rmsValue;
 }

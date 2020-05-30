@@ -10,6 +10,7 @@
 
 #include "vuMeter.h"
 #define meterSmoothingCoefficient .96
+#define panMakeup 2.8
 
 vuMeter::vuMeter(GainPluginAudioProcessor* inputProcessor, int width, int height)
 :   _processor(inputProcessor),
@@ -25,6 +26,7 @@ void vuMeter::paint(Graphics& g)
 {
     int channelFill = getHeight() - (getHeight() * _channelLevel);
     
+    // Set VU meter empty if there is no signal
     if(_channelLevel <= 0)
     {
         channelFill = 250;
@@ -36,20 +38,20 @@ void vuMeter::paint(Graphics& g)
     
     g.setColour(Colours::crimson);
     g.fillRect(0, newFill, getWidth(), getHeight()+20);
-        
-    repaint();
+    g.setColour(Colours::green);
+    g.drawText(std::to_string(Decibels::gainToDecibels(_channelLevel) + 2.8), 10, 10, getWidth(), 12, Justification::centred);
 }
 
 void vuMeter::timerCallback()
 {
     float updatedChannelLevel = _processor->getChannelLevel(0);
 
-    if(updatedChannelLevel > _channelLevel)
+    if(updatedChannelLevel >= _channelLevel)
         _channelLevel = updatedChannelLevel;
     else
         _channelLevel = meterSmoothingCoefficient * (_channelLevel - updatedChannelLevel) + updatedChannelLevel;
-
-    _channelLevel = denormalize(_channelLevel);
+    
+    repaint();
 }
 
 void vuMeter::setParameterID(int inputParameterID)

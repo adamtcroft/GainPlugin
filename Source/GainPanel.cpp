@@ -53,5 +53,13 @@ void GainPanel::paint(Graphics& g)
     _grip->setValue(static_cast<float>(_slider->getValue()));
     
     _vuMeter->setFillHeight(_slider->getValue());
+    
+    g.setColour(Colours::white);
+    g.drawText("RMS: ",
+               (getWidth() * 0.5) - (SLIDER_WIDTH * 0.5),
+               10,
+               SLIDER_WIDTH,
+               10,
+               Justification::centred);
     repaint();
 }

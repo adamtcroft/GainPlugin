@@ -26,11 +26,7 @@ public:
                  int numberOfSamplesToRender);
     
     void reset(double sampleRate);
-    
-    float getValue();
-    
+
 private:
     SmoothedValue<float, ValueSmoothingTypes::Linear> _smoother;
-    float _currentOutputValue, _avgVuSample, _vuDisplaySample = 0;
-    std::vector<float> _vuOutputBuffer;
 };

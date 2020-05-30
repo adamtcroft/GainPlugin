@@ -62,6 +62,7 @@ public:
     
     // Members
     AudioProcessorValueTreeState _parameters;
+    float _rmsValue, _rmsLeft, _rmsRight;
     
 private:
     // Members
