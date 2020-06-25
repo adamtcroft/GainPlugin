@@ -11,6 +11,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "vuMeter::paint(juce::Graphics&amp;):vuMeter.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "getHeight()">
+            </PersistentString>
+            <PersistentString
+               value = "_vuMeterHeight">
+            </PersistentString>
+            <PersistentString
+               value = "getWidth()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "juce::NormalisableRange&lt;double&gt;::setSkewForCentre(double):juce_NormalisableRange.h">
          <PersistentStrings>
             <PersistentString

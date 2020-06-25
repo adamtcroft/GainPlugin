@@ -11,6 +11,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#define RMS_DEQUE_SIZE 100
+
 using parametersVector = std::vector<std::unique_ptr<AudioProcessorValueTreeState::Parameter>>;
 using apvtsParameter = AudioProcessorValueTreeState::Parameter;
 
@@ -156,10 +158,10 @@ void GainPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+    
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
-
         // ..do something to the data...
         
         auto gainValue = _parameters.getParameterAsValue(parameterIDs[Parameter_Gain]).getValue();
@@ -167,9 +169,26 @@ void GainPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
         _gain->process(channelData, gainValue, channelData, buffer.getNumSamples());
         
         if(channel == 0)
-            _rmsLeft = buffer.getRMSLevel(0, 0, buffer.getNumSamples());
+        {
+            _peakLeft = buffer.getMagnitude(0, 0, buffer.getNumSamples());
+            
+            if(_rmsValues.size() == RMS_DEQUE_SIZE)
+                _rmsValues.pop_front();
+            _rmsValues.push_back(buffer.getRMSLevel(0, 0, buffer.getNumSamples()));
+        }
         else
-            _rmsRight = buffer.getRMSLevel(1, 0, buffer.getNumSamples());
+        {
+            _peakRight = buffer.getMagnitude(1, 0, buffer.getNumSamples());
+            
+            if(_rmsValues.size() == RMS_DEQUE_SIZE)
+                _rmsValues.pop_front();
+            _rmsValues.push_back(buffer.getRMSLevel(1, 0, buffer.getNumSamples()));
+        }
+        
+        if(_peakLeft < _peakRight)
+            _peakValue = _peakRight;
+        else
+            _peakValue = _peakLeft;
     }
 }
 
@@ -231,8 +250,15 @@ AudioProcessorValueTreeState::ParameterLayout GainPluginAudioProcessor::initiali
     return{parametersVector.begin(), parametersVector.end()};
 }
 
-float GainPluginAudioProcessor::getChannelLevel(int channel)
+float GainPluginAudioProcessor::getRMSLevelInGain()
 {
-    _rmsValue = (_rmsLeft + _rmsRight)/2;
-    return _rmsValue;
+    if(_rmsValues.size() == RMS_DEQUE_SIZE)
+        return std::accumulate(_rmsValues.begin(), _rmsValues.end(), 0.0f)/RMS_DEQUE_SIZE;
+    else
+        return 0;
+}
+
+float GainPluginAudioProcessor::getRMSLevelInDecibels()
+{
+    return Decibels::gainToDecibels(getRMSLevelInGain());
 }

@@ -12,7 +12,7 @@
 
 #include "PanelBase.h"
 #include "ParameterSlider.h"
-#include "vuMeter.h"
+#include "rmsMeter.h"
 #include "sliderGrip.h"
 
 class GainPanel : public PanelBase
@@ -27,8 +27,7 @@ public:
 
 private:
     std::unique_ptr<ParameterSlider> _slider;
-    std::unique_ptr<vuMeter> _vuMeter;
+    std::unique_ptr<rmsMeter> _vuMeter;
     std::unique_ptr<sliderGrip> _grip;
-    int _sliderX, _sliderY;
-    
+    float _sliderX, _sliderY, _rmsTextXCoordinate, _rmsTextYCoordinate;
 };

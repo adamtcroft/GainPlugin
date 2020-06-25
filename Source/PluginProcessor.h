@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <numeric>
 #include "nirGain.h"
 #include "ParameterList.h"
 #include "HelperFunctions.h"
@@ -58,19 +59,22 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    float getChannelLevel(int channel);
+    float getRMSLevelInGain();
+    float getRMSLevelInDecibels();
     
     // Members
     AudioProcessorValueTreeState _parameters;
-    float _rmsValue, _rmsLeft, _rmsRight;
+    float _rmsValue, _rmsLeft, _rmsRight, _peakValue, _peakLeft, _peakRight;
     
 private:
     // Members
     std::unique_ptr<nirGain> _gain;
+    std::deque<float> _rmsValues;
     
-    //Functions
+    // Functions
     void initializeDSP();
     AudioProcessorValueTreeState::ParameterLayout initializeParameters();
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainPluginAudioProcessor)
 };

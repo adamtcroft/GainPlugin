@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "49296B5A-E7AB-4BDF-B54F-EE0DFE284F5D"
+            uuid = "295356A6-3011-491D-A8FC-20249E9E4C3E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Source/ParameterSlider.cpp"
+            filePath = "../../Source/PluginProcessor.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "ParameterSlider::ParameterSlider(stateToControl, parameterID)"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "GainPluginAudioProcessor::getRMSLevelInGain()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

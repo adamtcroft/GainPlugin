@@ -3,11 +3,14 @@
 <JUCERPROJECT id="RGUfKg" name="GainPlugin" projectType="audioplug" jucerVersion="5.4.7"
               companyName="NIR" companyWebsite="adamtcroft.com" companyEmail="me@adamtcroft.com">
   <MAINGROUP id="o8RngZ" name="GainPlugin">
+    <FILE id="hhYbGR" name="ToDo.h" compile="0" resource="0" file="Source/ToDo.h"/>
     <GROUP id="{8BB6EC83-B160-82EB-853A-1FBE64038D81}" name="Components">
+      <FILE id="IcUP3x" name="peakMeter.cpp" compile="1" resource="0" file="Source/peakMeter.cpp"/>
+      <FILE id="cGHeDa" name="peakMeter.h" compile="0" resource="0" file="Source/peakMeter.h"/>
       <FILE id="MZeL8K" name="sliderGrip.cpp" compile="1" resource="0" file="Source/sliderGrip.cpp"/>
       <FILE id="L5mfBX" name="sliderGrip.h" compile="0" resource="0" file="Source/sliderGrip.h"/>
-      <FILE id="r8PSbd" name="vuMeter.cpp" compile="1" resource="0" file="Source/vuMeter.cpp"/>
-      <FILE id="UxpUYB" name="vuMeter.h" compile="0" resource="0" file="Source/vuMeter.h"/>
+      <FILE id="r8PSbd" name="rmsMeter.cpp" compile="1" resource="0" file="Source/rmsMeter.cpp"/>
+      <FILE id="UxpUYB" name="rmsMeter.h" compile="0" resource="0" file="Source/rmsMeter.h"/>
     </GROUP>
     <GROUP id="{2A270320-8FF8-3F26-D496-B1D605E1CCCE}" name="Panels">
       <FILE id="e2AuLM" name="GainPanel.cpp" compile="1" resource="0" file="Source/GainPanel.cpp"/>
@@ -43,7 +46,6 @@
     <GROUP id="{710D7D4F-E8AA-73E6-0189-FACA666C4A71}" name="Assets">
       <FILE id="urvuy2" name="Oswald-Stencil.ttf" compile="0" resource="1"
             file="../../../Library/Fonts/Oswald-Stencil.ttf"/>
-      <FILE id="VyrM75" name="Fader_white.png" compile="0" resource="1" file="Fader_white.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
