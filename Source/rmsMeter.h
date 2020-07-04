@@ -23,14 +23,14 @@ public:
     
     void paint(Graphics& g) override;
     void timerCallback() override;
-    void setParameterID(int inputParameterID);
+    void startTimer();
     void setFillHeight(double height);
     int getMeterHeight();
     
 private:
     GainPluginAudioProcessor* _processor;
-    int _parameterID, _paintCount, _sliderWidth, _sliderHeight, _vuMeterHeight;
+    int _sliderWidth, _sliderHeight, _vuMeterHeight;
     double _sliderFillHeight;
-    float _channelRMSLevel, _channelPeakLevel;
+    float _channelRMSLevel;
     Colour _meterColour;
 };

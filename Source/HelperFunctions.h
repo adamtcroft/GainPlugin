@@ -32,13 +32,13 @@ inline void paintComponentLabel(Graphics& g, Component* inComponent, float uiWid
     g.drawFittedText(label, x, y, width, height, Justification::centred, 1);
 }
 
-static inline float dBToNormalizedGain(float inValue)
-{
-    float inValueindB = Decibels::gainToDecibels(inValue + 0.00001f);
-    inValueindB = (inValueindB + 96.f) / 96.f;
-    
-    return inValueindB;
-}
+//static inline float dBToNormalizedGain(float inValue)
+//{
+//    float inValueindB = Decibels::gainToDecibels(inValue + 0.00001f);
+//    inValueindB = (inValueindB + 96.f) / 96.f;
+//    
+//    return inValueindB;
+//}
 
 inline float denormalize(float inValue)
 {

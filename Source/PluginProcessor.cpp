@@ -12,6 +12,7 @@
 #include "PluginEditor.h"
 
 #define RMS_DEQUE_SIZE 100
+#define PEAK_DEQUE_SIZE 100
 
 using parametersVector = std::vector<std::unique_ptr<AudioProcessorValueTreeState::Parameter>>;
 using apvtsParameter = AudioProcessorValueTreeState::Parameter;
@@ -170,7 +171,9 @@ void GainPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
         
         if(channel == 0)
         {
-            _peakLeft = buffer.getMagnitude(0, 0, buffer.getNumSamples());
+            if(_peakValues.size() == PEAK_DEQUE_SIZE)
+                _peakValues.pop_front();
+            _peakValues.push_back(buffer.getMagnitude(0, 0, buffer.getNumSamples()));
             
             if(_rmsValues.size() == RMS_DEQUE_SIZE)
                 _rmsValues.pop_front();
@@ -178,7 +181,9 @@ void GainPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
         }
         else
         {
-            _peakRight = buffer.getMagnitude(1, 0, buffer.getNumSamples());
+            if(_peakValues.size() == PEAK_DEQUE_SIZE)
+                _peakValues.pop_front();
+            _peakValues.push_back(buffer.getMagnitude(1, 0, buffer.getNumSamples()));
             
             if(_rmsValues.size() == RMS_DEQUE_SIZE)
                 _rmsValues.pop_front();
@@ -261,4 +266,14 @@ float GainPluginAudioProcessor::getRMSLevelInGain()
 float GainPluginAudioProcessor::getRMSLevelInDecibels()
 {
     return Decibels::gainToDecibels(getRMSLevelInGain());
+}
+
+float GainPluginAudioProcessor::getPeakLevelInGain()
+{
+    return *std::max_element(_peakValues.begin(), _peakValues.end());
+}
+
+float GainPluginAudioProcessor::getPeakLevelInDecibels()
+{
+    return Decibels::gainToDecibels(getPeakLevelInGain());
 }

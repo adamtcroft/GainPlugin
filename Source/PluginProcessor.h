@@ -61,15 +61,18 @@ public:
     
     float getRMSLevelInGain();
     float getRMSLevelInDecibels();
+    float getPeakLevelInGain();
+    float getPeakLevelInDecibels();
     
     // Members
     AudioProcessorValueTreeState _parameters;
-    float _rmsValue, _rmsLeft, _rmsRight, _peakValue, _peakLeft, _peakRight;
+    float _peakValue, _peakLeft, _peakRight;
     
 private:
     // Members
     std::unique_ptr<nirGain> _gain;
     std::deque<float> _rmsValues;
+    std::deque<float> _peakValues;
     
     // Functions
     void initializeDSP();

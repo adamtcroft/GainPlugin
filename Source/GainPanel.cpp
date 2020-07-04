@@ -32,8 +32,16 @@ GainPanel::GainPanel(GainPluginAudioProcessor* inputProcessor)
                         static_cast<int>(_sliderX),
                         SLIDER_WIDTH,
                         SLIDER_HEIGHT);
-    _vuMeter->setParameterID(Parameter_Gain);
+    _vuMeter->startTimer();
     addAndMakeVisible(*_vuMeter);
+    
+    _peakMeter = std::make_unique<peakMeter>(inputProcessor, SLIDER_WIDTH, SLIDER_HEIGHT);
+    _peakMeter->setBounds(static_cast<int>(_sliderY),
+                          static_cast<int>(_sliderX),
+                          SLIDER_WIDTH,
+                          SLIDER_HEIGHT);
+    _peakMeter->startTimer();
+    addAndMakeVisible(*_peakMeter);
     
     _slider = std::make_unique<ParameterSlider>(_processor->_parameters, parameterIDs[Parameter_Gain]);
     _slider->setBounds(static_cast<int>(_sliderY),
@@ -57,6 +65,7 @@ void GainPanel::paint(Graphics& g)
     
     _grip->setValue(static_cast<float>(_slider->getValue()));
     _vuMeter->setFillHeight(_slider->getValue());
+    _peakMeter->setFillHeight(_slider->getValue());
     _rmsTextYCoordinate = (_vuMeter->getMeterHeight() + _sliderX + SLIDER_HEIGHT+5)/2;
     float rmsDisplayLevelFloat = _processor->getRMSLevelInDecibels();
     

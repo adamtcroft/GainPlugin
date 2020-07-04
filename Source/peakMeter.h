@@ -11,8 +11,22 @@
 #pragma once
 
 #include "JuceHeader.h"
+#include "PluginProcessor.h"
 
 class peakMeter : public Component, Timer
 {
+public:
+    peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int height);
+    ~peakMeter() = default;
     
+    void paint(Graphics& g) override;
+    void timerCallback() override;
+    void startTimer();
+    void setFillHeight(double height);
+    
+private:
+    GainPluginAudioProcessor* _processor;
+    int _sliderWidth, _sliderHeight;
+    float _channelPeakLevel;
+    double _sliderFillHeight;
 };

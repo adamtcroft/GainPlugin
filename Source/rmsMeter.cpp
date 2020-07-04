@@ -14,8 +14,6 @@
 
 rmsMeter::rmsMeter(GainPluginAudioProcessor* inputProcessor, int width, int height)
 :   _processor(inputProcessor),
-    _parameterID(-1),
-    _paintCount(0),
     _sliderWidth(width),
     _sliderHeight(height),
     _vuMeterHeight(0),
@@ -39,17 +37,6 @@ void rmsMeter::paint(Graphics& g)
                           static_cast<float>(SLIDER_HEIGHT),
                           static_cast<float>(topOfSlider));
     
-//    float peakDecibelValue = _processor->getPeakLevelInDecibels();
-//    int peakMeterHeight = jmap(peakDecibelValue,
-//                               -100.f,
-//                               0.f,
-//                               static_cast<float>(SLIDER_HEIGHT),
-//                               static_cast<float>(topOfSlider));
-    
-    
-//    g.setColour(Colours::lightseagreen);
-//    g.fillRect(0, peakMeterHeight, getWidth(), 5);
-    
     g.setColour(Colours::crimson);
     g.fillRect(0, _vuMeterHeight, getWidth(), getHeight()+20);
 }
@@ -57,24 +44,17 @@ void rmsMeter::paint(Graphics& g)
 void rmsMeter::timerCallback()
 {
     float updatedChannelLevel = _processor->getRMSLevelInGain();
-//    float updatedPeakLevel = _processor->getPeakLevelInGain();
 
     if(updatedChannelLevel >= _channelRMSLevel)
         _channelRMSLevel = updatedChannelLevel;
     else
         _channelRMSLevel = meterSmoothingCoefficient * (_channelRMSLevel - updatedChannelLevel) + updatedChannelLevel;
     
-//    if(updatedPeakLevel >= _channelPeakLevel)
-//        _channelPeakLevel = updatedPeakLevel;
-//    else
-//        _channelPeakLevel = meterSmoothingCoefficient * (_channelPeakLevel - updatedPeakLevel) + updatedPeakLevel;
-    
     repaint();
 }
 
-void rmsMeter::setParameterID(int inputParameterID)
+void rmsMeter::startTimer()
 {
-    _parameterID = inputParameterID;
     startTimerHz(24);
 }
 

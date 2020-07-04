@@ -23,6 +23,8 @@
     <GROUP id="{5D1F21D3-2949-F344-2ABF-357F66821358}" name="DSP">
       <FILE id="Aust8m" name="nirGain.cpp" compile="1" resource="0" file="Source/nirGain.cpp"/>
       <FILE id="G4Ib48" name="nirGain.h" compile="0" resource="0" file="Source/nirGain.h"/>
+      <FILE id="xGYbLp" name="nirRMS.cpp" compile="1" resource="0" file="Source/nirRMS.cpp"/>
+      <FILE id="SAvNaN" name="nirRMS.h" compile="0" resource="0" file="Source/nirRMS.h"/>
     </GROUP>
     <GROUP id="{9EC46511-F71B-296E-F90E-95CD434751D6}" name="Source">
       <FILE id="jolYJI" name="HelperFunctions.h" compile="0" resource="0"
