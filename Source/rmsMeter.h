@@ -18,7 +18,7 @@
 class rmsMeter : public Component, Timer
 {
 public:
-    rmsMeter(GainPluginAudioProcessor* inputProcessor, int width, int height);
+    rmsMeter(GainPluginAudioProcessor* inputProcessor, int width, int height, int channelNumber);
     ~rmsMeter() = default;
     
     void paint(Graphics& g) override;
@@ -29,7 +29,7 @@ public:
     
 private:
     GainPluginAudioProcessor* _processor;
-    int _sliderWidth, _sliderHeight, _vuMeterHeight;
+    int _sliderWidth, _sliderHeight, _vuMeterHeight, _channelNumber;
     double _sliderFillHeight;
     float _channelRMSLevel;
     Colour _meterColour;

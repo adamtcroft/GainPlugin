@@ -28,8 +28,8 @@ public:
 
 private:
     std::unique_ptr<ParameterSlider> _slider;
-    std::unique_ptr<rmsMeter> _vuMeter;
-    std::unique_ptr<peakMeter> _peakMeter;
+    std::unique_ptr<rmsMeter> _rmsMeterLeft, _rmsMeterRight;
+    std::unique_ptr<peakMeter> _peakMeterLeft, _peakMeterRight;
     std::unique_ptr<sliderGrip> _grip;
     float _sliderX, _sliderY;
     float _rmsTextXCoordinate, _rmsTextYCoordinate;

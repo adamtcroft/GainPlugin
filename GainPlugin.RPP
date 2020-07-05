@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "6.09/OSX64" 1593043209
+<REAPER_PROJECT 0.1 "6.09/OSX64" 1593836947
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -15,7 +15,7 @@
   VIDEO_CONFIG 0 0 256
   PANMODE 3
   CURSOR 0
-  ZOOM 100 0 0
+  ZOOM 100 637 0
   VZOOMEX 6 0
   USE_REC_CFG 0
   RECMODE 1
@@ -66,7 +66,7 @@
   MASTER_NCH 2 2
   MASTER_VOLUME 1 0 -1 -1 1
   MASTER_FX 1
-  MASTER_SEL 0
+  MASTER_SEL 1
   <MASTERPLAYSPEEDENV
     ACT 0 -1
     VIS 0 1 1
@@ -83,8 +83,8 @@
   >
   <PROJBAY
   >
-  <TRACK {502FD6EC-4CB2-684B-870F-6ED93AF957C6}
-    NAME CellarPathway
+  <TRACK {D6ABD703-3250-F842-A735-EFFEC53FFC03}
+    NAME "The Chainsaw Blues Cowboys - The Magnificent Seven Part I - 05 Railroad Workers"
     PEAKCOL 16576
     BEAT -1
     AUTOMODE 0
@@ -96,28 +96,28 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
     FREEMODE 0
-    SEL 1
+    SEL 0
     REC 0 0 1 0 0 0 0
     VU 2
-    TRACKHEIGHT 61 0 0
+    TRACKHEIGHT 0 0 0
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {502FD6EC-4CB2-684B-870F-6ED93AF957C6}
+    TRACKID {D6ABD703-3250-F842-A735-EFFEC53FFC03}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
     <FXCHAIN
-      WNDRECT 729 373 409 402
+      WNDRECT 46 228 409 402
       SHOW 2
       LASTSEL 1
       DOCKED 0
-      BYPASS 0 0 0
+      BYPASS 1 0 0
       <JS synthesis/tonegenerator ""
         -12.000000 -6.000000 440.000000 0.000000 0.000000 0.000000 0.000000 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
       >
       FLOATPOS 0 0 0 0
-      FXID {6607D418-BD1A-6549-B538-A6021219CAC2}
+      FXID {52308AD8-3CF4-D14F-B7D4-EC7D9FCFA77C}
       WAK 0 0
       BYPASS 0 0 0
       <AU "AU: GainPlugin (NIR)" "NIR: GainPlugin" "" 1635083896 1382511974 1298230901
@@ -131,29 +131,29 @@
         aW50ZWdlcj4KCTxrZXk+dmVyc2lvbjwva2V5PgoJPGludGVnZXI+MDwvaW50ZWdlcj4KPC9kaWN0Pgo8L3BsaXN0PgoBAAAAAAAAAAAA
       >
       FLOATPOS 0 0 0 0
-      FXID {5AD140E3-0DDC-6940-ACD8-FF20EEB09CC1}
+      FXID {18BEC663-7D04-534E-9FDD-7509176AA73A}
       WAK 0 0
     >
     <ITEM
       POSITION 0
       SNAPOFFS 0
-      LENGTH 20.66530208333333
+      LENGTH 234.51979591836735
       LOOP 1
       ALLTAKES 0
       FADEIN 1 0.01 0 1 0 0
       FADEOUT 1 0.01 0 1 0 0
       MUTE 0
-      SEL 0
-      IGUID {FFF14FBD-9D38-344C-8F3C-0DB3E6D7C587}
-      IID 1
-      NAME CellarPathway.wav
+      SEL 1
+      IGUID {DEE1639C-5FA4-4149-A906-2908B8E018AC}
+      IID 2
+      NAME "The Chainsaw Blues Cowboys - The Magnificent Seven Part I - 05 Railroad Workers.mp3"
       VOLPAN 1 0 1 -1
       SOFFS 0
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
-      GUID {176C9075-0006-5745-A388-65A834BA3249}
-      <SOURCE WAVE
-        FILE "/Users/adam/Music/Glitchmachines/CHIMERA/CHIMERA_SAMPLES/CATACOMB/CellarPathway.wav"
+      GUID {55814E93-1F3B-FA41-9C5A-8ACEF1D8FB02}
+      <SOURCE MP3
+        FILE "/Users/adam/Music/The Chainsaw Blues Cowboys - The Magnificent Seven Part I/The Chainsaw Blues Cowboys - The Magnificent Seven Part I - 05 Railroad Workers.mp3" 1
       >
     >
   >

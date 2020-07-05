@@ -16,7 +16,7 @@
 class peakMeter : public Component, Timer
 {
 public:
-    peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int height);
+    peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int height, int channelNumber);
     ~peakMeter() = default;
     
     void paint(Graphics& g) override;
@@ -26,7 +26,7 @@ public:
     
 private:
     GainPluginAudioProcessor* _processor;
-    int _sliderWidth, _sliderHeight;
+    int _sliderWidth, _sliderHeight, _channelNumber;
     float _channelPeakLevel;
     double _sliderFillHeight;
 };

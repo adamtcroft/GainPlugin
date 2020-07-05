@@ -11,10 +11,11 @@
 #include "peakMeter.h"
 #define meterSmoothingCoefficient .6
 
-peakMeter::peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int height)
+peakMeter::peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int height, int channelNumber)
 :   _processor(inputProcessor),
     _sliderWidth(width),
     _sliderHeight(height),
+    _channelNumber(channelNumber),
     _channelPeakLevel(0.0f)
 {
     
@@ -24,7 +25,7 @@ void peakMeter::paint(Graphics& g)
 {
     int topOfSlider = jmap(_sliderFillHeight, 250.0, 0.0);
     
-    float peakDecibelValue = _processor->getPeakLevelInDecibels();
+    float peakDecibelValue = _processor->getPeakLevelInDecibels(_channelNumber);
     int peakMeterHeight = jmap(peakDecibelValue,
                                -100.f,
                                0.f,
@@ -47,7 +48,7 @@ void peakMeter::timerCallback()
         _channelPeakLevel = 0;
     }
     
-    float updatedPeakLevel = _processor->getPeakLevelInGain();
+    float updatedPeakLevel = _processor->getPeakLevelInGain(_channelNumber);
     
     if(updatedPeakLevel >= _channelPeakLevel)
         _channelPeakLevel = updatedPeakLevel;

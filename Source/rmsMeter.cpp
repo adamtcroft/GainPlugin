@@ -12,11 +12,12 @@
 #define meterSmoothingCoefficient .6
 #define panMakeup 2.8
 
-rmsMeter::rmsMeter(GainPluginAudioProcessor* inputProcessor, int width, int height)
+rmsMeter::rmsMeter(GainPluginAudioProcessor* inputProcessor, int width, int height, int channelNumber)
 :   _processor(inputProcessor),
     _sliderWidth(width),
     _sliderHeight(height),
     _vuMeterHeight(0),
+    _channelNumber(channelNumber),
     _channelRMSLevel(0.0f)
 {
 }
@@ -43,7 +44,7 @@ void rmsMeter::paint(Graphics& g)
 
 void rmsMeter::timerCallback()
 {
-    float updatedChannelLevel = _processor->getRMSLevelInGain();
+    float updatedChannelLevel = _processor->getRMSLevelInGain(_channelNumber);
 
     if(updatedChannelLevel >= _channelRMSLevel)
         _channelRMSLevel = updatedChannelLevel;

@@ -59,20 +59,20 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    float getRMSLevelInGain();
-    float getRMSLevelInDecibels();
-    float getPeakLevelInGain();
-    float getPeakLevelInDecibels();
+    float getRMSLevelInGain(int channelNumber);
+    float getRMSLevelInDecibels(int channelNumber);
+    float getPeakLevelInGain(int channelNumber);
+    float getPeakLevelInDecibels(int channelNumber);
     
     // Members
-    AudioProcessorValueTreeState _parameters;
-    float _peakValue, _peakLeft, _peakRight;
-    
+    AudioProcessorValueTreeState _parameters;    
 private:
     // Members
     std::unique_ptr<nirGain> _gain;
-    std::deque<float> _rmsValues;
-    std::deque<float> _peakValues;
+    std::deque<float> _rmsValuesLeft;
+    std::deque<float> _rmsValuesRight;
+    std::deque<float> _peakValuesLeft;
+    std::deque<float> _peakValuesRight;
     
     // Functions
     void initializeDSP();
