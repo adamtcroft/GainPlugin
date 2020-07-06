@@ -250,8 +250,6 @@ AudioProcessorValueTreeState::ParameterLayout GainPluginAudioProcessor::initiali
     return{parametersVector.begin(), parametersVector.end()};
 }
 
-// I'll need one of these for left and one for right
-// or I can just return an object with both values
 float GainPluginAudioProcessor::getRMSLevelInGain(int channelNumber)
 {
     if(channelNumber == 0 && _rmsValuesLeft.size() == RMS_DEQUE_SIZE)
@@ -262,15 +260,11 @@ float GainPluginAudioProcessor::getRMSLevelInGain(int channelNumber)
         return 0.0f;
 }
 
-// I'll need one of these for left and one for right
-// or I can just return an object with both values
 float GainPluginAudioProcessor::getRMSLevelInDecibels(int channelNumber)
 {
     return Decibels::gainToDecibels(getRMSLevelInGain(channelNumber));
 }
 
-// I'll need one of these for left and one for right
-// or I can just return an object with both values
 float GainPluginAudioProcessor::getPeakLevelInGain(int channelNumber)
 {
     if(channelNumber == 0 && _peakValuesLeft.size() == PEAK_DEQUE_SIZE)
@@ -281,8 +275,6 @@ float GainPluginAudioProcessor::getPeakLevelInGain(int channelNumber)
         return 0.f;
 }
 
-// I'll need one of these for left and one for right
-// or I can just return an object with both values
 float GainPluginAudioProcessor::getPeakLevelInDecibels(int channelNumber)
 {
     return Decibels::gainToDecibels(getPeakLevelInGain(channelNumber));

@@ -84,7 +84,8 @@ void GainPanel::paint(Graphics& g)
     _rmsMeterRight->setFillHeight(_slider->getValue());
     _peakMeterLeft->setFillHeight(_slider->getValue());
     _peakMeterRight->setFillHeight(_slider->getValue());
-    _rmsTextYCoordinate = (_rmsMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT+5)/2;
+    
+    _rmsTextYCoordinate = (_rmsMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2;
     float rmsDisplayLevelFloat = _processor->getRMSLevelInDecibels(0);
     
     //K-14
@@ -94,29 +95,22 @@ void GainPanel::paint(Graphics& g)
     auto meterHeight = _rmsMeterLeft->getMeterHeight() + static_cast<int>(_sliderY);
     
     if(rmsDisplayLevelFloat <= -100)
-    {
-        
         g.setColour(Colours::black);
-        _rmsTextXCoordinate = getWidth()/3.8;
-    }
-    else
-    {
-        _rmsTextXCoordinate = getWidth()/4;
-    }
-  
     
-    if(_rmsTextYCoordinate >= 237)
+    // Horizontal lines for RMS Left value
+    g.fillRect(45, meterHeight, 10, 2);
+    g.fillRect(45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 3, 10, 2);
+    
+    // Vertical Lines for RMS Left value
+    g.fillRect(45, meterHeight, 2, 10);
+    g.fillRect(45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 11, 2, 10);
+    
+    if(_rmsTextYCoordinate >= 210)
         g.setColour(Colours::black);
     else
         g.setColour(Colours::lightgrey);
-
-    g.fillRect(getWidth()-55, meterHeight, 10, 2);
-    g.fillRect(getWidth()-55, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 3, 10, 2);
-    g.fillRect(getWidth()-45, meterHeight, 2, 10);
-    g.fillRect(getWidth()-45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 11, 2, 10);
     
-    g.setColour(Colours::lightgrey);
-    
+    _rmsTextXCoordinate = -41;
     if(rmsDisplayLevelFloat > -10 && rmsDisplayLevelFloat < 0)
     {
         g.drawText(rmsDisplayLevel.substring(0,2),
@@ -144,7 +138,6 @@ void GainPanel::paint(Graphics& g)
                    12,
                    Justification::centred);
     }
-
     
     repaint();
 }

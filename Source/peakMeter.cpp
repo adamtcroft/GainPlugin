@@ -9,7 +9,7 @@
 */
 
 #include "peakMeter.h"
-#define meterSmoothingCoefficient .6
+#define meterSmoothingCoefficient .2
 
 peakMeter::peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int height, int channelNumber)
 :   _processor(inputProcessor),
@@ -26,17 +26,22 @@ void peakMeter::paint(Graphics& g)
     int topOfSlider = jmap(_sliderFillHeight, 250.0, 0.0);
     
     float peakDecibelValue = _processor->getPeakLevelInDecibels(_channelNumber);
+    
     int peakMeterHeight = jmap(peakDecibelValue,
                                -100.f,
                                0.f,
                                static_cast<float>(SLIDER_HEIGHT),
                                static_cast<float>(topOfSlider));
     
-    DBG("Slider top: " << topOfSlider);
-    DBG("Peak Meter Height: " << peakMeterHeight);
+    // Hacked check to ensure that the peak meter doesn't go higher than the slider itself
+    if(peakMeterHeight < topOfSlider)
+        peakMeterHeight = topOfSlider;
     
-    
-    g.setColour(Colours::lightseagreen);
+    if(peakMeterHeight == topOfSlider)
+        g.setColour(Colours::maroon);
+    else
+        g.setColour(Colours::lightseagreen);
+
     g.fillRect(0, peakMeterHeight, getWidth(), 5);
 }
 

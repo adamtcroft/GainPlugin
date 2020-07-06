@@ -32,6 +32,7 @@ void rmsMeter::paint(Graphics& g)
     
     float decibelValue = Decibels::gainToDecibels(_channelRMSLevel);
     int topOfSlider = jmap(_sliderFillHeight, 250.0, 0.0);
+    
     _vuMeterHeight = jmap(decibelValue,
                           -100.f,
                           0.f,

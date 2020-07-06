@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "6.09/OSX64" 1593836560
+<REAPER_PROJECT 0.1 "6.09/OSX64" 1593915893
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -15,7 +15,7 @@
   VIDEO_CONFIG 0 0 256
   PANMODE 3
   CURSOR 0
-  ZOOM 100 0 0
+  ZOOM 350.7510475285527 8471 0
   VZOOMEX 6 0
   USE_REC_CFG 0
   RECMODE 1
@@ -64,7 +64,7 @@
   MASTERTRACKVIEW 0 0.6667 0.5 0.5 0 0 0 0 0 0
   MASTERHWOUT 0 0 1 0 0 0 0 -1
   MASTER_NCH 2 2
-  MASTER_VOLUME 0.09222120553777 0 -1 -1 1
+  MASTER_VOLUME 0 0 -1 -1 1
   MASTER_FX 1
   MASTER_SEL 0
   <MASTERPLAYSPEEDENV
@@ -83,12 +83,12 @@
   >
   <PROJBAY
   >
-  <TRACK {D6ABD703-3250-F842-A735-EFFEC53FFC03}
-    NAME "The Chainsaw Blues Cowboys - The Magnificent Seven Part I - 05 Railroad Workers"
+  <TRACK {598900A7-E5EF-6846-84AB-75A0784F06E4}
+    NAME "Mumukshu - Static - 01 Static"
     PEAKCOL 16576
     BEAT -1
     AUTOMODE 0
-    VOLPAN 0.41096001966125 0 -1 -1 1
+    VOLPAN 1 0 -1 -1 1
     MUTESOLO 0 0 0
     IPHASE 0
     PLAYOFFS 0 1
@@ -103,15 +103,22 @@
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
-    TRACKID {D6ABD703-3250-F842-A735-EFFEC53FFC03}
+    TRACKID {598900A7-E5EF-6846-84AB-75A0784F06E4}
     PERF 0
     MIDIOUT -1
     MAINSEND 1 0
     <FXCHAIN
-      WNDRECT 701 213 409 402
-      SHOW 1
-      LASTSEL 0
+      WNDRECT 749 169 409 402
+      SHOW 2
+      LASTSEL 1
       DOCKED 0
+      BYPASS 1 0 0
+      <JS synthesis/tonegenerator ""
+        -12.000000 -6.000000 440.000000 0.000000 0.000000 0.000000 0.000000 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+      >
+      FLOATPOS 0 0 0 0
+      FXID {9202F114-83BA-4042-A3B2-A1156AA44290}
+      WAK 0 0
       BYPASS 0 0 0
       <AU "AU: GainPlugin (NIR)" "NIR: GainPlugin" "" 1635083896 1382511974 1298230901
         6QMAAAAAAAACAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAAsAIAADw/eG1sIHZlcnNpb249IjEuMCIgZW5jb2Rpbmc9IlVURi04Ij8+CjwhRE9D
@@ -124,29 +131,29 @@
         aW50ZWdlcj4KCTxrZXk+dmVyc2lvbjwva2V5PgoJPGludGVnZXI+MDwvaW50ZWdlcj4KPC9kaWN0Pgo8L3BsaXN0PgoBAAAAAAAAAAAA
       >
       FLOATPOS 0 0 0 0
-      FXID {18BEC663-7D04-534E-9FDD-7509176AA73A}
+      FXID {CA4BC0C6-C2EB-314C-93A6-31C636605B0D}
       WAK 0 0
     >
     <ITEM
       POSITION 0
       SNAPOFFS 0
-      LENGTH 234.51979591836735
+      LENGTH 249.17070294784583
       LOOP 1
       ALLTAKES 0
       FADEIN 1 0.01 0 1 0 0
       FADEOUT 1 0.01 0 1 0 0
       MUTE 0
       SEL 1
-      IGUID {DEE1639C-5FA4-4149-A906-2908B8E018AC}
-      IID 2
-      NAME "The Chainsaw Blues Cowboys - The Magnificent Seven Part I - 05 Railroad Workers.mp3"
+      IGUID {614C5A94-9CF2-8E46-A13D-857E798DF87B}
+      IID 4
+      NAME "Mumukshu - Static - 01 Static.wav"
       VOLPAN 1 0 1 -1
       SOFFS 0
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
-      GUID {55814E93-1F3B-FA41-9C5A-8ACEF1D8FB02}
-      <SOURCE MP3
-        FILE "/Users/adam/Music/The Chainsaw Blues Cowboys - The Magnificent Seven Part I/The Chainsaw Blues Cowboys - The Magnificent Seven Part I - 05 Railroad Workers.mp3" 1
+      GUID {A0714ECA-25D8-8749-AE78-745CA3876877}
+      <SOURCE WAVE
+        FILE "/Users/adam/Music/Mumukshu - Static/Mumukshu - Static - 01 Static.wav"
       >
     >
   >
