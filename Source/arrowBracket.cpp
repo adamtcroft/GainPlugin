@@ -10,8 +10,9 @@
 
 #include "arrowBracket.h"
 
-arrowBracket::arrowBracket()
-:   _x(0),
+arrowBracket::arrowBracket(int x, int y)
+:   _x(x),
+    _y(y),
     _flippedVertical(false),
     _flippedHorizontal(false)
 {
@@ -20,41 +21,42 @@ arrowBracket::arrowBracket()
 
 void arrowBracket::paint(Graphics& g)
 {
-    g.setColour(Colours::cornsilk);
+    g.setColour(Colours::lightgrey);
+    
+    DBG("Arrow X: " << _x);
     
     if(_flippedVertical == true && _flippedHorizontal == false)
     {
         // Horizontal
-        g.fillRect(45, _y + 10, 10, 2);
+        g.fillRect(_x, _y + 10, 10, 2);
         
         // Vertical
-        g.fillRect(45, _y, 2, 10);
+        g.fillRect(_x, _y, 2, 10);
     }
     else if(_flippedHorizontal == true && _flippedVertical == false)
     {
         //Horizontal
-        g.fillRect(45, _y, 10, 2);
+        g.fillRect(_x, _y, 10, 2);
         
         //Vertical
-        g.fillRect(55, _y, 2, 10);
+        g.fillRect(_x + 8, _y, 2, 10);
 
     }
     else if(_flippedHorizontal == true && _flippedVertical == true)
     {
-        DBG("both flipped");
         //Horizontal
-        g.fillRect(45, _y + 10, 10, 2);
+        g.fillRect(_x, _y + 10, 10, 2);
         
         //Vertical
-        g.fillRect(53, _y, 2, 10);
+        g.fillRect(_x + 8, _y, 2, 10);
     }
     else
     {
         //Horizontal
-        g.fillRect(45, _y, 10, 2);
+        g.fillRect(_x, _y, 10, 2);
         
         //Vertical
-        g.fillRect(45, _y, 2, 10);
+        g.fillRect(_x, _y, 2, 10);
     }
 }
 

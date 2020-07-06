@@ -18,13 +18,13 @@
 class signalLabel : public Component, Timer
 {
 public:
-    signalLabel();
+    signalLabel(int x, int y, bool flip = false);
     ~signalLabel() = default;
     
     void paint(Graphics& g) override;
     void timerCallback() override;
     void startTimer();
-    void setY(float coordinate);
+    void setTextY(float coordinate);
     void setDisplayLevel(float displayLevel);
     void setTopArrowHeight(int height);
     void setBottomArrowHeight(int height);

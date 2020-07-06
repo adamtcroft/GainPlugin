@@ -10,51 +10,65 @@
 
 #include "signalLabel.h"
 
-signalLabel::signalLabel()
-:   _x(-41),
+signalLabel::signalLabel(int x, int y, bool flip)
+:   _x(x),
+    _y(y),
     _topArrowHeight(0)
 {
-    _topArrow = std::make_unique<arrowBracket>();
+    _topArrow = std::make_unique<arrowBracket>(_x, _y);
     _topArrow->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _topArrow->startTimer();
+    if(flip == true)
+    {
+        _topArrow->flipHorizontal();
+        _x += 2;
+    }
+    else
+        _x -= 4;
     addAndMakeVisible(*_topArrow);
     
-    _bottomArrow = std::make_unique<arrowBracket>();
+    _bottomArrow = std::make_unique<arrowBracket>(_x, _y);
     _bottomArrow->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _bottomArrow->startTimer();
     _bottomArrow->flipVertical();
+    if(flip == true)
+    {
+        _bottomArrow->flipHorizontal();
+        _x += 2;
+    }
+    else
+        _x -= 4;
     addAndMakeVisible(*_bottomArrow);
 }
 
 void signalLabel::paint(Graphics& g)
 {
     _topArrow->setY(_topArrowHeight);
-    _bottomArrow->setY(_bottomArrowHeight);
     
     g.setColour(Colours::lightgrey);
     g.setFont(labelFont);
-    
+        
     if(_displayLevelFloat > -10 && _displayLevelFloat < 0)
         g.drawText(_displayLevelString.substring(0,2),
                    _x,
                    _y,
-                   getWidth(),
+                   50,
                    12,
-                   Justification::centred);
+                   Justification::left);
     else if(_displayLevelFloat > 0)
         g.drawText(_displayLevelString.substring(0,1),
                    _x,
                    _y,
-                   getWidth(),
+                   50,
                    12,
-                   Justification::centred);
+                   Justification::left);
     else
         g.drawText(_displayLevelString.substring(0,3),
                    _x,
                    _y,
-                   getWidth(),
+                   50,
                    12,
-                   Justification::centred);
+                   Justification::left);
 }
 
 void signalLabel::timerCallback()
@@ -67,7 +81,7 @@ void signalLabel::startTimer()
     startTimerHz(24);
 }
 
-void signalLabel::setY(float coordinate)
+void signalLabel::setTextY(float coordinate)
 {
     _y = coordinate;
 }

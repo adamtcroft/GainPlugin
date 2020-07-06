@@ -15,7 +15,7 @@
 class arrowBracket : public Component, Timer
 {
 public:
-    arrowBracket();
+    arrowBracket(int x, int y);
     ~arrowBracket() = default;
     
     void paint(Graphics& g) override;
