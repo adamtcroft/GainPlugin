@@ -86,6 +86,7 @@ void GainPanel::paint(Graphics& g)
         paintComponentLabel(g, _slider.get(), getWidth());
     
     _grip->setValue(static_cast<float>(_slider->getValue()));
+    
     _rmsMeterLeft->setFillHeight(_slider->getValue());
     _rmsMeterRight->setFillHeight(_slider->getValue());
     _peakMeterLeft->setFillHeight(_slider->getValue());
@@ -93,23 +94,10 @@ void GainPanel::paint(Graphics& g)
     
     _rmsLabelLeft->setY((_rmsMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
     _rmsLabelLeft->setDisplayLevel(_processor->getRMSLevelInDecibels(0));
-    float rmsDisplayLevelFloat = _processor->getRMSLevelInDecibels(0);
-    
-    //K-14
-//    rmsDisplayLevelFloat += 14;
     
     _rmsLabelLeft->setTopArrowHeight(_rmsMeterLeft->getMeterHeight() + static_cast<int>(_sliderY));
-    _rmsLabelLeft->setBottomArrowHeight(250);
-    
-    if(rmsDisplayLevelFloat <= -100)
-        g.setColour(Colours::black);
-    
-    // Horizontal lines for RMS Left value
-    g.fillRect(45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 3, 10, 2);
-    
-    // Vertical Lines for RMS Left value
-    g.fillRect(45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 11, 2, 10);
-    
+    _rmsLabelLeft->setBottomArrowHeight(SLIDER_HEIGHT + 10);
+
 //    if(rmsDisplayLevelFloat > -90 && _fadedIn == false)
 //    {
 //        _animator.fadeIn(_rmsLabelLeft.get(), 5000);

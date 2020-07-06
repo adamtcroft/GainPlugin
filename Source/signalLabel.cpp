@@ -22,6 +22,7 @@ signalLabel::signalLabel()
     _bottomArrow = std::make_unique<arrowBracket>();
     _bottomArrow->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _bottomArrow->startTimer();
+    _bottomArrow->flipVertical();
     addAndMakeVisible(*_bottomArrow);
 }
 

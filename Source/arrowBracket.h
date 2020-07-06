@@ -22,7 +22,10 @@ public:
     void timerCallback() override;
     void startTimer();
     void setY(int coordinate);
+    void flipVertical();
+    void flipHorizontal();
     
 private:
     int _x, _y;
+    bool _flippedVertical, _flippedHorizontal;
 };
