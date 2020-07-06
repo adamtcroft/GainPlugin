@@ -3,8 +3,14 @@
 <JUCERPROJECT id="RGUfKg" name="GainPlugin" projectType="audioplug" jucerVersion="5.4.7"
               companyName="NIR" companyWebsite="adamtcroft.com" companyEmail="me@adamtcroft.com">
   <MAINGROUP id="o8RngZ" name="GainPlugin">
+    <FILE id="BMlBrz" name="ScratchPad.h" compile="0" resource="0" file="Source/ScratchPad.h"/>
     <FILE id="hhYbGR" name="ToDo.h" compile="0" resource="0" file="Source/ToDo.h"/>
     <GROUP id="{8BB6EC83-B160-82EB-853A-1FBE64038D81}" name="Components">
+      <FILE id="Kb84iD" name="arrowBracket.cpp" compile="1" resource="0"
+            file="Source/arrowBracket.cpp"/>
+      <FILE id="tEkf2Y" name="arrowBracket.h" compile="0" resource="0" file="Source/arrowBracket.h"/>
+      <FILE id="afDDmP" name="signalLabel.cpp" compile="1" resource="0" file="Source/signalLabel.cpp"/>
+      <FILE id="zbRA36" name="signalLabel.h" compile="0" resource="0" file="Source/signalLabel.h"/>
       <FILE id="IcUP3x" name="peakMeter.cpp" compile="1" resource="0" file="Source/peakMeter.cpp"/>
       <FILE id="cGHeDa" name="peakMeter.h" compile="0" resource="0" file="Source/peakMeter.h"/>
       <FILE id="MZeL8K" name="sliderGrip.cpp" compile="1" resource="0" file="Source/sliderGrip.cpp"/>

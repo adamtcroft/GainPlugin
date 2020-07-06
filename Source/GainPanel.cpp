@@ -16,7 +16,8 @@ GainPanel::GainPanel(GainPluginAudioProcessor* inputProcessor)
     _sliderX((PLUGIN_WIDTH * 0.5) - (SLIDER_WIDTH * 0.5)),
     _sliderY((PLUGIN_HEIGHT * 0.45) - (SLIDER_HEIGHT * 0.5)),
     _rmsTextXCoordinate(0.0f),
-    _rmsTextYCoordinate(0.0f)
+    _rmsTextYCoordinate(0.0f),
+    _fadedIn(false)
 {
     setSize(PLUGIN_WIDTH, PLUGIN_HEIGHT);
     
@@ -34,6 +35,11 @@ GainPanel::GainPanel(GainPluginAudioProcessor* inputProcessor)
                         SLIDER_HEIGHT);
     _rmsMeterLeft->startTimer();
     addAndMakeVisible(*_rmsMeterLeft);
+    
+    _rmsLabelLeft = std::make_unique<signalLabel>();
+    _rmsLabelLeft->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
+    _rmsLabelLeft->startTimer();
+    addAndMakeVisible(*_rmsLabelLeft);
 
     _rmsMeterRight = std::make_unique<rmsMeter>(inputProcessor, SLIDER_WIDTH/2, SLIDER_HEIGHT, 1);
     _rmsMeterRight->setBounds(static_cast<int>(_sliderX) + SLIDER_WIDTH/2,
@@ -85,60 +91,31 @@ void GainPanel::paint(Graphics& g)
     _peakMeterLeft->setFillHeight(_slider->getValue());
     _peakMeterRight->setFillHeight(_slider->getValue());
     
-    _rmsTextYCoordinate = (_rmsMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2;
+    _rmsLabelLeft->setY((_rmsMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
+    _rmsLabelLeft->setDisplayLevel(_processor->getRMSLevelInDecibels(0));
     float rmsDisplayLevelFloat = _processor->getRMSLevelInDecibels(0);
     
     //K-14
 //    rmsDisplayLevelFloat += 14;
     
-    String rmsDisplayLevel = static_cast<String>(rmsDisplayLevelFloat);
-    auto meterHeight = _rmsMeterLeft->getMeterHeight() + static_cast<int>(_sliderY);
+    _rmsLabelLeft->setTopArrowHeight(_rmsMeterLeft->getMeterHeight() + static_cast<int>(_sliderY));
+    _rmsLabelLeft->setBottomArrowHeight(250);
     
     if(rmsDisplayLevelFloat <= -100)
         g.setColour(Colours::black);
     
     // Horizontal lines for RMS Left value
-    g.fillRect(45, meterHeight, 10, 2);
     g.fillRect(45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 3, 10, 2);
     
     // Vertical Lines for RMS Left value
-    g.fillRect(45, meterHeight, 2, 10);
     g.fillRect(45, static_cast<int>(_sliderY) + SLIDER_HEIGHT - 11, 2, 10);
     
-    if(_rmsTextYCoordinate >= 210)
-        g.setColour(Colours::black);
-    else
-        g.setColour(Colours::lightgrey);
-    
-    _rmsTextXCoordinate = -41;
-    if(rmsDisplayLevelFloat > -10 && rmsDisplayLevelFloat < 0)
-    {
-        g.drawText(rmsDisplayLevel.substring(0,2),
-                   _rmsTextXCoordinate,
-                   _rmsTextYCoordinate,
-                   getWidth(),
-                   12,
-                   Justification::centred);
-    }
-    else if(rmsDisplayLevelFloat > 0)
-    {
-        g.drawText(rmsDisplayLevel.substring(0,1),
-                   _rmsTextXCoordinate,
-                   _rmsTextYCoordinate,
-                   getWidth(),
-                   12,
-                   Justification::centred);
-    }
-    else
-    {
-        g.drawText(rmsDisplayLevel.substring(0,3),
-                   _rmsTextXCoordinate,
-                   _rmsTextYCoordinate,
-                   getWidth(),
-                   12,
-                   Justification::centred);
-    }
-    
+//    if(rmsDisplayLevelFloat > -90 && _fadedIn == false)
+//    {
+//        _animator.fadeIn(_rmsLabelLeft.get(), 5000);
+//        _fadedIn = true;
+//    }
+
     repaint();
 }
 

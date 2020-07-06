@@ -15,6 +15,7 @@
 #include "rmsMeter.h"
 #include "peakMeter.h"
 #include "sliderGrip.h"
+#include "signalLabel.h"
 
 class GainPanel : public PanelBase
 {
@@ -31,7 +32,10 @@ private:
     std::unique_ptr<rmsMeter> _rmsMeterLeft, _rmsMeterRight;
     std::unique_ptr<peakMeter> _peakMeterLeft, _peakMeterRight;
     std::unique_ptr<sliderGrip> _grip;
+    std::unique_ptr<signalLabel> _rmsLabelLeft;
     float _sliderX, _sliderY;
     float _rmsTextXCoordinate, _rmsTextYCoordinate;
     float _peakTextXCoordinate, _peakTextYCoordinate;
+    ComponentAnimator _animator;
+    bool _fadedIn;
 };
