@@ -29,7 +29,7 @@ public:
     
 private:
     GainPluginAudioProcessor* _processor;
-    int _sliderWidth, _sliderHeight, _vuMeterHeight, _channelNumber;
+    int _sliderWidth, _sliderHeight, _meterHeight, _channelNumber;
     double _sliderFillHeight;
     float _channelRMSLevel;
     Colour _meterColour;

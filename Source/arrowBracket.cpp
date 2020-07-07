@@ -23,8 +23,6 @@ void arrowBracket::paint(Graphics& g)
 {
     g.setColour(Colours::lightgrey);
     
-    DBG("Arrow X: " << _x);
-    
     if(_flippedVertical == true && _flippedHorizontal == false)
     {
         // Horizontal

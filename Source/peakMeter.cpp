@@ -16,6 +16,7 @@ peakMeter::peakMeter(GainPluginAudioProcessor* inputProcessor, int width, int he
     _sliderWidth(width),
     _sliderHeight(height),
     _channelNumber(channelNumber),
+    _meterHeight(0),
     _channelPeakLevel(0.0f)
 {
     
@@ -27,22 +28,22 @@ void peakMeter::paint(Graphics& g)
     
     float peakDecibelValue = _processor->getPeakLevelInDecibels(_channelNumber);
     
-    int peakMeterHeight = jmap(peakDecibelValue,
+    _meterHeight = jmap(peakDecibelValue,
                                -100.f,
                                0.f,
                                static_cast<float>(SLIDER_HEIGHT),
                                static_cast<float>(topOfSlider));
     
     // Hacked check to ensure that the peak meter doesn't go higher than the slider itself
-    if(peakMeterHeight < topOfSlider)
-        peakMeterHeight = topOfSlider;
+    if(_meterHeight < topOfSlider)
+        _meterHeight = topOfSlider;
     
-    if(peakMeterHeight == topOfSlider)
+    if(_meterHeight == topOfSlider)
         g.setColour(Colours::maroon);
     else
         g.setColour(Colours::lightseagreen);
 
-    g.fillRect(0, peakMeterHeight, getWidth(), 5);
+    g.fillRect(0, _meterHeight, getWidth(), 5);
 }
 
 void peakMeter::timerCallback()
@@ -71,4 +72,9 @@ void peakMeter::startTimer()
 void peakMeter::setFillHeight(double height)
 {
     _sliderFillHeight = height;
+}
+
+int peakMeter::getMeterHeight()
+{
+    return _meterHeight;
 }

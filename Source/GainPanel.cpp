@@ -15,8 +15,8 @@ GainPanel::GainPanel(GainPluginAudioProcessor* inputProcessor)
 :   PanelBase(inputProcessor),
     _sliderX((PLUGIN_WIDTH * 0.5) - (SLIDER_WIDTH * 0.5)),
     _sliderY((PLUGIN_HEIGHT * 0.45) - (SLIDER_HEIGHT * 0.5)),
-    _rmsTextXCoordinate(0.0f),
-    _rmsTextYCoordinate(0.0f),
+//    _rmsTextXCoordinate(0.0f),
+//    _rmsTextYCoordinate(0.0f),
     _fadedIn(false)
 {
     setSize(PLUGIN_WIDTH, PLUGIN_HEIGHT);
@@ -48,8 +48,17 @@ void GainPanel::paint(Graphics& g)
     _rmsLabelLeft->setTopArrowHeight(_rmsMeterLeft->getMeterHeight() + static_cast<int>(_sliderY));
     
     _rmsLabelRight->setTextY((_rmsMeterRight->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
-    _rmsLabelRight->setDisplayLevel(_processor->getRMSLevelInDecibels(0));
+    _rmsLabelRight->setDisplayLevel(_processor->getRMSLevelInDecibels(1));
     _rmsLabelRight->setTopArrowHeight(_rmsMeterRight->getMeterHeight() + static_cast<int>(_sliderY));
+    
+    _peakLabelLeft->setTextY((_peakMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
+    _peakLabelLeft->setDisplayLevel(_processor->getPeakLevelInDecibels(0));
+    _peakLabelLeft->setTopArrowHeight(_peakMeterLeft->getMeterHeight() + static_cast<int>(_sliderY));
+    
+    _peakLabelRight->setTextY((_peakMeterRight->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
+    _peakLabelRight->setDisplayLevel(_processor->getPeakLevelInDecibels(0));
+    _peakLabelRight->setTopArrowHeight(_peakMeterRight->getMeterHeight() + static_cast<int>(_sliderY));
+
 
 //    if(rmsDisplayLevelFloat > -90 && _fadedIn == false)
 //    {
@@ -117,6 +126,16 @@ void GainPanel::initializeLabels()
     _rmsLabelRight->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _rmsLabelRight->startTimer();
     addAndMakeVisible(*_rmsLabelRight);
+    
+    _peakLabelLeft = std::make_unique<signalLabel>(_sliderX - 35, SLIDER_HEIGHT + 9);
+    _peakLabelLeft->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
+    _peakLabelLeft->startTimer();
+    addAndMakeVisible(*_peakLabelLeft);
+    
+    _peakLabelRight = std::make_unique<signalLabel>(_sliderX + SLIDER_WIDTH + 25, SLIDER_HEIGHT + 9, true);
+    _peakLabelRight->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
+    _peakLabelRight->startTimer();
+    addAndMakeVisible(*_peakLabelRight);
 }
 
 void GainPanel::initializeSlider()

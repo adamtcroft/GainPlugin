@@ -16,7 +16,7 @@ rmsMeter::rmsMeter(GainPluginAudioProcessor* inputProcessor, int width, int heig
 :   _processor(inputProcessor),
     _sliderWidth(width),
     _sliderHeight(height),
-    _vuMeterHeight(0),
+    _meterHeight(0),
     _channelNumber(channelNumber),
     _channelRMSLevel(0.0f)
 {
@@ -33,14 +33,14 @@ void rmsMeter::paint(Graphics& g)
     float decibelValue = Decibels::gainToDecibels(_channelRMSLevel);
     int topOfSlider = jmap(_sliderFillHeight, 250.0, 0.0);
     
-    _vuMeterHeight = jmap(decibelValue,
+    _meterHeight = jmap(decibelValue,
                           -100.f,
                           0.f,
                           static_cast<float>(SLIDER_HEIGHT),
                           static_cast<float>(topOfSlider));
     
     g.setColour(Colours::crimson);
-    g.fillRect(0, _vuMeterHeight, getWidth(), getHeight()+20);
+    g.fillRect(0, _meterHeight, getWidth(), getHeight()+20);
 }
 
 void rmsMeter::timerCallback()
@@ -67,5 +67,5 @@ void rmsMeter::setFillHeight(double height)
 
 int rmsMeter::getMeterHeight()
 {
-    return _vuMeterHeight;
+    return _meterHeight;
 }

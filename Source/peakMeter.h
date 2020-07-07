@@ -23,10 +23,11 @@ public:
     void timerCallback() override;
     void startTimer();
     void setFillHeight(double height);
+    int getMeterHeight();
     
 private:
     GainPluginAudioProcessor* _processor;
-    int _sliderWidth, _sliderHeight, _channelNumber;
+    int _sliderWidth, _sliderHeight, _channelNumber, _meterHeight;
     float _channelPeakLevel;
     double _sliderFillHeight;
 };

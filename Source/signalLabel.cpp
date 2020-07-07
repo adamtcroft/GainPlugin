@@ -21,7 +21,7 @@ signalLabel::signalLabel(int x, int y, bool flip)
     if(flip == true)
     {
         _topArrow->flipHorizontal();
-        _x += 2;
+        _x += 3;
     }
     else
         _x -= 4;
@@ -34,7 +34,7 @@ signalLabel::signalLabel(int x, int y, bool flip)
     if(flip == true)
     {
         _bottomArrow->flipHorizontal();
-        _x += 2;
+        _x += 3;
     }
     else
         _x -= 4;
