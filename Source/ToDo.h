@@ -14,13 +14,10 @@
 
 // 1. Add K-System feature
 
-// 2. Make the UI actually useful - meaning Peak value number available and
-// usable
+// 2. Animate the text label fade in and out
 
-// 3. Animate the text label fade in and out
+// 3. Visually differentiate the Peak and RMS arrows
 
-// 4. Make the arrows rotateable ***
+// 4. Refactor meters to have a base meter class and use inheritance
 
-// 5. Add signalLabels for each RMS channel
-
-// 6. Add signalLabels for each Peak channel
+// 5. Refactor labels to have a base label class and use inheritance
