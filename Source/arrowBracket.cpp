@@ -62,23 +62,3 @@ void arrowBracket::timerCallback()
 {
     repaint();
 }
-
-void arrowBracket::startTimer()
-{
-    startTimerHz(24);
-}
-
-void arrowBracket::setY(int coordinate)
-{
-    _y = coordinate;
-}
-
-void arrowBracket::flipVertical()
-{
-    _flippedVertical = true;
-}
-
-void arrowBracket::flipHorizontal()
-{
-    _flippedHorizontal = true;
-}

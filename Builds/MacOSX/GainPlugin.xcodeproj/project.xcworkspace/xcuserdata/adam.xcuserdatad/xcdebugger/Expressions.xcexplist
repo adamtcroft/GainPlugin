@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "nirRMS::process(int, float):nirRMS.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_rmsValuesLeft-&gt;size()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

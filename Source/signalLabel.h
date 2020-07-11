@@ -23,11 +23,20 @@ public:
     
     void paint(Graphics& g) override;
     void timerCallback() override;
-    void startTimer();
-    void setTextY(float coordinate);
-    void setDisplayLevel(float displayLevel);
-    void setTopArrowHeight(int height);
-    void setBottomArrowHeight(int height);
+    
+    inline void startTimer() { startTimerHz(24); };
+    inline void setTextY(float coordinate) { _y = coordinate; };
+    inline void setTopArrowHeight(int height) { _topArrowHeight = height; };
+    inline void setBottomArrowHeight(int height) { _bottomArrowHeight = height; };
+    inline void setDisplayLevel(float displayLevel)
+    {
+        if(displayLevel >= 0)
+            _displayLevelFloat = -0.01;
+        else
+            _displayLevelFloat = displayLevel;
+        
+        _displayLevelString = static_cast<String>(_displayLevelFloat);
+    }
     
 private:
     GainPluginAudioProcessor* _processor;

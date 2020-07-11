@@ -24,8 +24,6 @@ public:
     ~GainPanel() = default;
     
     void paint(Graphics& g) override;
-    static int getSliderWidth();
-    static int getSliderHeight();
 
 private:
     std::unique_ptr<ParameterSlider> _slider;
@@ -35,8 +33,6 @@ private:
     std::shared_ptr<signalLabel> _rmsLabelLeft, _rmsLabelRight, _peakLabelLeft, _peakLabelRight;
 
     float _sliderX, _sliderY;
-//    float _rmsTextXCoordinate, _rmsTextYCoordinate;
-//    float _peakTextXCoordinate, _peakTextYCoordinate;
     ComponentAnimator _animator;
     bool _fadedIn;
     

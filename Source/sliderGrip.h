@@ -19,6 +19,7 @@ public:
     ~sliderGrip() = default;
     
     void paint(Graphics& g) override;
+    
     inline void setValue(float&& value) { _sliderValue = value; };
     inline void setGripColour(Colour colour) { _gripColour = colour; };
     

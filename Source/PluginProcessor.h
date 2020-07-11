@@ -13,6 +13,7 @@
 #include <JuceHeader.h>
 #include <numeric>
 #include "nirGain.h"
+#include "nirRMS.h"
 #include "ParameterList.h"
 #include "HelperFunctions.h"
 
@@ -59,8 +60,8 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    float getRMSLevelInGain(int channelNumber);
-    float getRMSLevelInDecibels(int channelNumber);
+    inline float getRMSLevelInGain(int channelNumber) { return _rms->getRMSLevelInGain(channelNumber); };
+    inline float getRMSLevelInDecibels(int channelNumber) { return _rms->getRMSLevelInDecibels(channelNumber); };
     float getPeakLevelInGain(int channelNumber);
     float getPeakLevelInDecibels(int channelNumber);
     
@@ -69,6 +70,7 @@ public:
 private:
     // Members
     std::unique_ptr<nirGain> _gain;
+    std::unique_ptr<nirRMS> _rms;
     std::deque<float> _rmsValuesLeft;
     std::deque<float> _rmsValuesRight;
     std::deque<float> _peakValuesLeft;

@@ -12,7 +12,6 @@
 
 #include "JuceHeader.h"
 #include "HelperFunctions.h"
-#include <array>
 
 class nirGain
 {

@@ -20,10 +20,11 @@ public:
     
     void paint(Graphics& g) override;
     void timerCallback() override;
-    void startTimer();
-    void setY(int coordinate);
-    void flipVertical();
-    void flipHorizontal();
+    
+    inline void startTimer() { startTimerHz(24); };
+    inline void setY(int coordinate) {  _y = coordinate; };
+    inline void flipVertical() { _flippedVertical = true; };
+    inline void flipHorizontal() { _flippedHorizontal = true; };
     
 private:
     int _x, _y;

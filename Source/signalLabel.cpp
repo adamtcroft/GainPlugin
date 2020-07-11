@@ -92,33 +92,3 @@ void signalLabel::timerCallback()
 {
     repaint();
 }
-
-void signalLabel::startTimer()
-{
-    startTimerHz(24);
-}
-
-void signalLabel::setTextY(float coordinate)
-{
-    _y = coordinate;
-}
-
-void signalLabel::setDisplayLevel(float displayLevel)
-{
-    if(displayLevel >= 0)
-        _displayLevelFloat = -0.01;
-    else
-        _displayLevelFloat = displayLevel;
-    
-    _displayLevelString = static_cast<String>(_displayLevelFloat);
-}
-
-void signalLabel::setTopArrowHeight(int height)
-{
-    _topArrowHeight = height;
-}
-
-void signalLabel::setBottomArrowHeight(int height)
-{
-    _bottomArrowHeight = height;
-}

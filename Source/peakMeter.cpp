@@ -63,18 +63,3 @@ void peakMeter::timerCallback()
     
     repaint();
 }
-
-void peakMeter::startTimer()
-{
-    startTimerHz(24);
-}
-
-void peakMeter::setFillHeight(double height)
-{
-    _sliderFillHeight = height;
-}
-
-int peakMeter::getMeterHeight()
-{
-    return _meterHeight;
-}
