@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="RGUfKg" name="GainPlugin" projectType="audioplug" jucerVersion="5.4.7"
-              companyName="NIR" companyWebsite="adamtcroft.com" companyEmail="me@adamtcroft.com">
+              companyName="Croftware" companyWebsite="adamtcroft.com" companyEmail="me@adamtcroft.com"
+              pluginFormats="buildAAX,buildAU,buildVST3">
   <MAINGROUP id="o8RngZ" name="GainPlugin">
     <FILE id="BMlBrz" name="ScratchPad.h" compile="0" resource="0" file="Source/ScratchPad.h"/>
     <FILE id="hhYbGR" name="ToDo.h" compile="0" resource="0" file="Source/ToDo.h"/>

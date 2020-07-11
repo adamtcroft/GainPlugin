@@ -50,7 +50,7 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "GainPlugin";
-    const char* const  companyName    = "NIR";
+    const char* const  companyName    = "Croftware";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }

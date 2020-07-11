@@ -34,5 +34,7 @@ private:
     float _x, _y, _displayLevelFloat;
     int _topArrowHeight, _bottomArrowHeight;
     String _displayLevelString;
+    ComponentAnimator _animator;
+    bool _fadedIn;
     std::unique_ptr<arrowBracket> _topArrow, _bottomArrow;
 };

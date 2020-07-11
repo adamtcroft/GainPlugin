@@ -14,10 +14,11 @@
 
 // 1. Add K-System feature
 
-// 2. Animate the text label fade in and out
+// 2. Visually differentiate the Peak and RMS arrows
+        // Add coloration option to the labels
 
-// 3. Visually differentiate the Peak and RMS arrows
+// 3. Refactor meters to have a base meter class and use inheritance
 
-// 4. Refactor meters to have a base meter class and use inheritance
+// 4. Refactor labels to have a base label class and use inheritance
 
-// 5. Refactor labels to have a base label class and use inheritance
+// 5. Mono/Stereo support

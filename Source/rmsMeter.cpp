@@ -59,13 +59,3 @@ void rmsMeter::startTimer()
 {
     startTimerHz(24);
 }
-
-void rmsMeter::setFillHeight(double height)
-{
-    _sliderFillHeight = height;
-}
-
-int rmsMeter::getMeterHeight()
-{
-    return _meterHeight;
-}

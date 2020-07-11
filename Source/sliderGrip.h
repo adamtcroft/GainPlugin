@@ -19,8 +19,8 @@ public:
     ~sliderGrip() = default;
     
     void paint(Graphics& g) override;
-    void setValue(float&& value);
-    void setGripColour(Colour colour);
+    inline void setValue(float&& value) { _sliderValue = value; };
+    inline void setGripColour(Colour colour) { _gripColour = colour; };
     
 private:
     GainPluginAudioProcessor* _processor;

@@ -13,7 +13,8 @@
 signalLabel::signalLabel(int x, int y, bool flip)
 :   _x(x),
     _y(y),
-    _topArrowHeight(0)
+    _topArrowHeight(0),
+    _fadedIn(false)
 {
     _topArrow = std::make_unique<arrowBracket>(_x, _y);
     _topArrow->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
@@ -39,6 +40,9 @@ signalLabel::signalLabel(int x, int y, bool flip)
     else
         _x -= 4;
     addAndMakeVisible(*_bottomArrow);
+    
+    _animator.fadeOut(_topArrow.get(), 1);
+    _animator.fadeOut(_bottomArrow.get(), 1);
 }
 
 void signalLabel::paint(Graphics& g)
@@ -69,6 +73,19 @@ void signalLabel::paint(Graphics& g)
                    50,
                    12,
                    Justification::left);
+    
+    if(_displayLevelFloat <= -100 && _fadedIn == true)
+    {
+        _animator.fadeOut(_topArrow.get(), 500);
+        _animator.fadeOut(_bottomArrow.get(), 500);
+        _fadedIn = false;
+    }
+    else if(_displayLevelFloat > -90 && _fadedIn == false)
+    {
+        _animator.fadeIn(_topArrow.get(), 500);
+        _animator.fadeIn(_bottomArrow.get(), 500);
+        _fadedIn = true;
+    }
 }
 
 void signalLabel::timerCallback()
@@ -88,8 +105,12 @@ void signalLabel::setTextY(float coordinate)
 
 void signalLabel::setDisplayLevel(float displayLevel)
 {
-    _displayLevelFloat = displayLevel;
-    _displayLevelString = static_cast<String>(displayLevel);
+    if(displayLevel >= 0)
+        _displayLevelFloat = -0.01;
+    else
+        _displayLevelFloat = displayLevel;
+    
+    _displayLevelString = static_cast<String>(_displayLevelFloat);
 }
 
 void signalLabel::setTopArrowHeight(int height)

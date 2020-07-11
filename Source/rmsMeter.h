@@ -24,8 +24,8 @@ public:
     void paint(Graphics& g) override;
     void timerCallback() override;
     void startTimer();
-    void setFillHeight(double height);
-    int getMeterHeight();
+    inline void setFillHeight(double height) { _sliderFillHeight = height; };
+    inline int getMeterHeight() { return _meterHeight; };
     
 private:
     GainPluginAudioProcessor* _processor;

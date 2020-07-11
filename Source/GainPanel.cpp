@@ -15,8 +15,6 @@ GainPanel::GainPanel(GainPluginAudioProcessor* inputProcessor)
 :   PanelBase(inputProcessor),
     _sliderX((PLUGIN_WIDTH * 0.5) - (SLIDER_WIDTH * 0.5)),
     _sliderY((PLUGIN_HEIGHT * 0.45) - (SLIDER_HEIGHT * 0.5)),
-//    _rmsTextXCoordinate(0.0f),
-//    _rmsTextYCoordinate(0.0f),
     _fadedIn(false)
 {
     setSize(PLUGIN_WIDTH, PLUGIN_HEIGHT);
@@ -50,21 +48,32 @@ void GainPanel::paint(Graphics& g)
     _rmsLabelRight->setTextY((_rmsMeterRight->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
     _rmsLabelRight->setDisplayLevel(_processor->getRMSLevelInDecibels(1));
     _rmsLabelRight->setTopArrowHeight(_rmsMeterRight->getMeterHeight() + static_cast<int>(_sliderY));
-    
+
     _peakLabelLeft->setTextY((_peakMeterLeft->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
     _peakLabelLeft->setDisplayLevel(_processor->getPeakLevelInDecibels(0));
     _peakLabelLeft->setTopArrowHeight(_peakMeterLeft->getMeterHeight() + static_cast<int>(_sliderY));
-    
+
     _peakLabelRight->setTextY((_peakMeterRight->getMeterHeight() + _sliderY + SLIDER_HEIGHT + 5)/2);
-    _peakLabelRight->setDisplayLevel(_processor->getPeakLevelInDecibels(0));
+    _peakLabelRight->setDisplayLevel(_processor->getPeakLevelInDecibels(1));
     _peakLabelRight->setTopArrowHeight(_peakMeterRight->getMeterHeight() + static_cast<int>(_sliderY));
 
 
-//    if(rmsDisplayLevelFloat > -90 && _fadedIn == false)
-//    {
-//        _animator.fadeIn(_rmsLabelLeft.get(), 5000);
-//        _fadedIn = true;
-//    }
+    if(_processor->getRMSLevelInDecibels(0) > -93 && _fadedIn == false)
+    {
+        _animator.fadeIn(_rmsLabelLeft.get(), 400);
+        _animator.fadeIn(_rmsLabelRight.get(), 400);
+        _animator.fadeIn(_peakLabelLeft.get(), 400);
+        _animator.fadeIn(_peakLabelRight.get(), 400);
+        _fadedIn = true;
+    }
+    else if(_processor->getRMSLevelInDecibels(0) <= -100 && _fadedIn == true)
+    {
+        _animator.fadeOut(_rmsLabelLeft.get(), 500);
+        _animator.fadeOut(_rmsLabelRight.get(), 500);
+        _animator.fadeOut(_peakLabelLeft.get(), 500);
+        _animator.fadeOut(_peakLabelRight.get(), 500);
+        _fadedIn = false;
+    }
 
     repaint();
 }
@@ -117,25 +126,30 @@ void GainPanel::initializeBackground()
 
 void GainPanel::initializeLabels()
 {
-    _rmsLabelLeft = std::make_unique<signalLabel>(_sliderX - 15, SLIDER_HEIGHT + 9);
+    _rmsLabelLeft = std::make_shared<signalLabel>(_sliderX - 15, SLIDER_HEIGHT + 9);
     _rmsLabelLeft->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _rmsLabelLeft->startTimer();
     addAndMakeVisible(*_rmsLabelLeft);
     
-    _rmsLabelRight = std::make_unique<signalLabel>(_sliderX + SLIDER_WIDTH + 5, SLIDER_HEIGHT + 9, true);
+    _rmsLabelRight = std::make_shared<signalLabel>(_sliderX + SLIDER_WIDTH + 5, SLIDER_HEIGHT + 9, true);
     _rmsLabelRight->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _rmsLabelRight->startTimer();
     addAndMakeVisible(*_rmsLabelRight);
-    
-    _peakLabelLeft = std::make_unique<signalLabel>(_sliderX - 35, SLIDER_HEIGHT + 9);
+
+    _peakLabelLeft = std::make_shared<signalLabel>(_sliderX - 35, SLIDER_HEIGHT + 9);
     _peakLabelLeft->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _peakLabelLeft->startTimer();
     addAndMakeVisible(*_peakLabelLeft);
-    
-    _peakLabelRight = std::make_unique<signalLabel>(_sliderX + SLIDER_WIDTH + 25, SLIDER_HEIGHT + 9, true);
+
+    _peakLabelRight = std::make_shared<signalLabel>(_sliderX + SLIDER_WIDTH + 25, SLIDER_HEIGHT + 9, true);
     _peakLabelRight->setBounds(0, 0, PLUGIN_WIDTH, PLUGIN_HEIGHT);
     _peakLabelRight->startTimer();
     addAndMakeVisible(*_peakLabelRight);
+    
+    _animator.fadeOut(_rmsLabelLeft.get(), 1);
+    _animator.fadeOut(_rmsLabelRight.get(), 1);
+    _animator.fadeOut(_peakLabelLeft.get(), 1);
+    _animator.fadeOut(_peakLabelRight.get(), 1);
 }
 
 void GainPanel::initializeSlider()

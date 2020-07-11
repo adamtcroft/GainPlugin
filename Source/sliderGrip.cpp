@@ -29,13 +29,3 @@ void sliderGrip::paint(Graphics& g)
                250);
     repaint();
 }
-
-void sliderGrip::setValue(float&& value)
-{
-    _sliderValue = value;
-}
-
-void sliderGrip::setGripColour(Colour colour)
-{
-    _gripColour = colour;
-}
