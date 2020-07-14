@@ -113,6 +113,10 @@
 			isa = PBXBuildFile;
 			fileRef = BFA31C9E2887761037B2053A;
 		};
+		C9C4B84551C30D0525643D17 = {
+			isa = PBXBuildFile;
+			fileRef = 9729AB67878AE2CF6EB57A8D;
+		};
 		C5B8586EE553674376AD7C01 = {
 			isa = PBXBuildFile;
 			fileRef = A76BDF4839E5D65872C2DBAA;
@@ -584,6 +588,13 @@
 			path = ../../Source/PluginEditor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		9729AB67878AE2CF6EB57A8D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = nirPeak.cpp;
+			path = ../../Source/nirPeak.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9BAD489A87A8EEE22229249A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -759,6 +770,13 @@
 			path = ../../Source/signalLabel.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E5D67633AFAE62EC20CAB09C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = nirPeak.h;
+			path = ../../Source/nirPeak.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		E696E33186D1704B3D6C07C1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -885,6 +903,8 @@
 			children = (
 				BFA31C9E2887761037B2053A,
 				A22680074E3E8147D468E10A,
+				9729AB67878AE2CF6EB57A8D,
+				E5D67633AFAE62EC20CAB09C,
 				A76BDF4839E5D65872C2DBAA,
 				88360E1FCB0F8BFE3260AB90,
 			);
@@ -1856,6 +1876,7 @@
 				148B0CBF9EA296621F86D82D,
 				C93880DF331BB3356108B408,
 				FAA30269C5ACCF716C5D1F29,
+				C9C4B84551C30D0525643D17,
 				C5B8586EE553674376AD7C01,
 				410234992D8A76DD83F4CD00,
 				CD3CF11B6A75BE2F30DC7D0D,

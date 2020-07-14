@@ -169,19 +169,7 @@ void GainPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuf
         
         _gain->process(channelData, gainValue, channelData, buffer.getNumSamples());
         _rms->process(channel, buffer.getRMSLevel(channel, 0, buffer.getNumSamples()));
-        
-        if(channel == 0)
-        {
-            if(_peakValuesLeft.size() == PEAK_DEQUE_SIZE)
-                _peakValuesLeft.pop_front();
-            _peakValuesLeft.push_back(buffer.getMagnitude(0, 0, buffer.getNumSamples()));
-        }
-        else
-        {
-            if(_peakValuesRight.size() == PEAK_DEQUE_SIZE)
-                _peakValuesRight.pop_front();
-            _peakValuesRight.push_back(buffer.getMagnitude(1, 0, buffer.getNumSamples()));
-        }
+        _peak->process(channel, buffer.getMagnitude(channel, 0, buffer.getNumSamples()));
     }
 }
 
@@ -220,6 +208,8 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 void GainPluginAudioProcessor::initializeDSP()
 {
     _gain = std::make_unique<nirGain>();
+    _rms = std::make_unique<nirRMS>();
+    _peak = std::make_unique<nirPeak>();
 }
 
 AudioProcessorValueTreeState::ParameterLayout GainPluginAudioProcessor::initializeParameters()
@@ -241,36 +231,4 @@ AudioProcessorValueTreeState::ParameterLayout GainPluginAudioProcessor::initiali
     }
     
     return{parametersVector.begin(), parametersVector.end()};
-}
-
-//float GainPluginAudioProcessor::getRMSLevelInGain(int channelNumber)
-//{
-//    return _rms->getRMSLevelInGain(channelNumber);
-////    if(channelNumber == 0 && _rmsValuesLeft.size() == RMS_DEQUE_SIZE)
-////        return std::accumulate(_rmsValuesLeft.begin(), _rmsValuesLeft.end(), 0.0f)/RMS_DEQUE_SIZE;
-////    else if(channelNumber == 1 && _rmsValuesRight.size() == RMS_DEQUE_SIZE)
-////        return std::accumulate(_rmsValuesRight.begin(), _rmsValuesRight.end(), 0.0f)/RMS_DEQUE_SIZE;
-////    else
-////        return 0.0f;
-//}
-//
-//float GainPluginAudioProcessor::getRMSLevelInDecibels(int channelNumber)
-//{
-//    return _rms->getRMSLevelInDecibels(channelNumber);
-////    return Decibels::gainToDecibels(getRMSLevelInGain(channelNumber));
-//}
-
-float GainPluginAudioProcessor::getPeakLevelInGain(int channelNumber)
-{
-    if(channelNumber == 0 && _peakValuesLeft.size() == PEAK_DEQUE_SIZE)
-        return *std::max_element(_peakValuesLeft.begin(), _peakValuesLeft.end());
-    else if(channelNumber == 1 && _peakValuesRight.size() == PEAK_DEQUE_SIZE)
-        return *std::max_element(_peakValuesRight.begin(), _peakValuesRight.end());
-    else
-        return 0.f;
-}
-
-float GainPluginAudioProcessor::getPeakLevelInDecibels(int channelNumber)
-{
-    return Decibels::gainToDecibels(getPeakLevelInGain(channelNumber));
 }

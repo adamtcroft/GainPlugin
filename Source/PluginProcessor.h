@@ -14,6 +14,7 @@
 #include <numeric>
 #include "nirGain.h"
 #include "nirRMS.h"
+#include "nirPeak.h"
 #include "ParameterList.h"
 #include "HelperFunctions.h"
 
@@ -62,8 +63,8 @@ public:
     
     inline float getRMSLevelInGain(int channelNumber) { return _rms->getRMSLevelInGain(channelNumber); };
     inline float getRMSLevelInDecibels(int channelNumber) { return _rms->getRMSLevelInDecibels(channelNumber); };
-    float getPeakLevelInGain(int channelNumber);
-    float getPeakLevelInDecibels(int channelNumber);
+    inline float getPeakLevelInGain(int channelNumber) { return _peak->getPeakLevelInGain(channelNumber); };
+    inline float getPeakLevelInDecibels(int channelNumber) { return _peak->getPeakLevelInDecibels(channelNumber); };
     
     // Members
     AudioProcessorValueTreeState _parameters;    
@@ -71,10 +72,7 @@ private:
     // Members
     std::unique_ptr<nirGain> _gain;
     std::unique_ptr<nirRMS> _rms;
-    std::deque<float> _rmsValuesLeft;
-    std::deque<float> _rmsValuesRight;
-    std::deque<float> _peakValuesLeft;
-    std::deque<float> _peakValuesRight;
+    std::unique_ptr<nirPeak> _peak;
     
     // Functions
     void initializeDSP();

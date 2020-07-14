@@ -30,6 +30,8 @@
     <GROUP id="{5D1F21D3-2949-F344-2ABF-357F66821358}" name="DSP">
       <FILE id="Aust8m" name="nirGain.cpp" compile="1" resource="0" file="Source/nirGain.cpp"/>
       <FILE id="G4Ib48" name="nirGain.h" compile="0" resource="0" file="Source/nirGain.h"/>
+      <FILE id="aA1u71" name="nirPeak.cpp" compile="1" resource="0" file="Source/nirPeak.cpp"/>
+      <FILE id="pDxPit" name="nirPeak.h" compile="0" resource="0" file="Source/nirPeak.h"/>
       <FILE id="xGYbLp" name="nirRMS.cpp" compile="1" resource="0" file="Source/nirRMS.cpp"/>
       <FILE id="SAvNaN" name="nirRMS.h" compile="0" resource="0" file="Source/nirRMS.h"/>
     </GROUP>
